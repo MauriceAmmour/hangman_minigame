@@ -107,6 +107,16 @@ std::string underlinesForChoosenWord(std::string word)
     return underlines;
 }
 
+std::string wordInUppercase(std::string word)
+{
+    for (uint32_t i = 0; i < word.length(); ++i)
+    {
+        word[i] = static_cast<char>(std::toupper(word[i]));
+    }
+
+    return word;
+}
+
 void gameLoop()
 {
     bool won = false;
@@ -114,6 +124,8 @@ void gameLoop()
     std::string underLines = underlinesForChoosenWord(targetWord);
 
     char guessedLetter;
+
+    std::cout << targetWord << std::endl;
 
     while (true)
     {
@@ -134,8 +146,18 @@ void gameLoop()
 
         for (uint32_t i = 0; i < targetWord.length(); ++i)
         {
-            /* code */
+            if (std::toupper(targetWord[i]) == std::toupper(guessedLetter))
+            {
+                underLines[i] = static_cast<char>(std::toupper(guessedLetter));
+            }
+            
         }
+
+        if (wordInUppercase(underLines) == wordInUppercase(targetWord))
+        {
+            won = true;
+        }
+        
         
         
     }
