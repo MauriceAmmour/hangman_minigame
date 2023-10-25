@@ -5,16 +5,94 @@
 
 #include "game.hpp"
 
-    // for (const std::string& pic : hangman) {
-    //     std::cout << pic << std::endl;
-    // }
+// for (const std::string& pic : hangman) {
+//     std::cout << pic << std::endl;
+// }
 
+std::string gameWords[] = {
+    "Apfel", "Buch", "Computer", "Drache", "Erdbeere",
+    "Fahrrad", "Garten", "Haus", "Igel", "Jacke",
+    "Kaffee", "Lampe", "Maus", "Nase", "Orange",
+    "Papier", "Quark", "Regen", "Sonne", "Tisch",
+    "Uhr", "Vogel", "Wald", "Xylophon", "Yoga",
+    "Zebra", "Auto", "Banane", "Delfin", "Elefant",
+    "Fisch", "Giraffe", "Hut", "Insel", "Junge",
+    "König", "Löwe", "Mädchen", "Nacht", "Ozean",
+    "Pflanze", "Quelle", "Rose", "Schule", "Tiger",
+    "Uhrzeit", "Vase", "Wal", "Zitrone", "Ananas",
+    "Berg", "Couch", "Diamant", "Eiscreme", "Flasche",
+    "Gitarre", "Hemd", "Igelstachel", "Jakobsweg", "Krokodil",
+    "Landschaft", "Mandarine", "Nachtigall", "Oberfläche", "Pinguin",
+    "Qualle", "Reiseführer", "Schmetterling", "Teleskop", "Universum",
+    "Vulkan", "Weltkarte", "Xenonlampe", "Yogamatte", "Zauberei",
+    "Astronaut", "Bibliothek", "Cocktail", "Delfinarium", "Elektrizität",
+    "Flughafen", "Gewitter", "Hubschrauber", "Ingenieur", "Jalousie",
+    "Krokodilleder", "Landschaftsmalerei", "Mandelbaum", "Nebelhorn", "Orangensaft",
+    "Panorama", "Querflöte", "Regenschirm", "Schokolade", "Taubenschwänzchen",
+    "Umwelt", "Videospiele", "Walross", "Zirkuszelt"};
+
+// hangman is from this github: https://gist.github.com/chrishorton/8510732aa9a80a03c829b09f12e20d9c
+std::vector<std::string> hangman = {
+    R"(
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========)",
+    R"(
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========)",
+    R"(
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========)",
+    R"(
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========)",
+    R"(
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========)",
+    R"(
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========)",
+    R"(
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========)"};
 
 std::string findRandomWord(std::string words[])
 {
-    uint32_t randomNum = static_cast<uint32_t>(rand() % 100);
-    
-    return words[randomNum];
+    return words[rand() % 100];
 }
 
 std::string underlinesForChoosenWord(std::string word)
@@ -32,6 +110,10 @@ std::string underlinesForChoosenWord(std::string word)
 void gameLoop()
 {
     bool won = false;
+    std::string targetWord = findRandomWord(gameWords);
+    std::string underLines = underlinesForChoosenWord(targetWord);
+
+    char guessedLetter;
 
     while (true)
     {
@@ -39,9 +121,22 @@ void gameLoop()
         {
             std::cout << "you find the word" << std::endl;
             break;
-        }   
+        }
+
+        std::cout << underLines << std::endl;
+
+        std::cout << "guess a letter: ";
+        std::cin >> guessedLetter;
+
+        std::cout << std::endl;
+
+        std::cout << "guessed Letter is: " << guessedLetter << std::endl;
+
+        for (uint32_t i = 0; i < targetWord.length(); ++i)
+        {
+            /* code */
+        }
+        
+        
     }
-
-
-    
 }
