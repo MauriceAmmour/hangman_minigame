@@ -28,7 +28,7 @@ std::string gameWords[] = {
     "Umwelt", "Videospiele", "Walross", "Zirkuszelt"};
 
 // hangman is from this github: https://gist.github.com/chrishorton/8510732aa9a80a03c829b09f12e20d9c
-std::vector<std::string> hangman = {
+const std::vector<std::string> hangman = {
     R"(
   +---+
   |   |
@@ -88,7 +88,8 @@ std::vector<std::string> hangman = {
 
 std::string findRandomWord(std::string words[])
 {
-    return words[rand() % 100];
+    int randomIndex = rand() % 100;
+    return words[randomIndex];
 }
 
 std::string underlinesForChoosenWord(std::string word)
@@ -121,8 +122,6 @@ void gameLoop()
     std::string guessedLetter;
     uint32_t count = 0U;
 
-
-    std::cout << targetWord << std::endl;
 
     while (true)
     {
