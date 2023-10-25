@@ -1,74 +1,21 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <cstdlib>
 
 #include "game.hpp"
-
-// hangman is from this github: https://gist.github.com/chrishorton/8510732aa9a80a03c829b09f12e20d9c
-std::vector<std::string> hangman = {
-        R"(
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========)",
-        R"(
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========)",
-        R"(
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========)",
-        R"(
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========)",
-        R"(
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========)",
-        R"(
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========)",
-        R"(
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-=========)"
-    };
 
     // for (const std::string& pic : hangman) {
     //     std::cout << pic << std::endl;
     // }
 
-std::string words[] = {"Hallo", "Welt"};
+
+std::string findRandomWord(std::string words[])
+{
+    uint32_t randomNum = static_cast<uint32_t>(rand() % 100);
+    
+    return words[randomNum];
+}
 
 std::string underlinesForChoosenWord(std::string word)
 {
@@ -92,8 +39,9 @@ void gameLoop()
         {
             std::cout << "you find the word" << std::endl;
             break;
-        }
-        
+        }   
     }
+
+
     
 }

@@ -4,7 +4,7 @@
 
 int main()
 {
-    std::cout << underlinesForChoosenWord("Hello");
+    std::cout << findRandomWord(gameWords);
 
     return 0;
 }
