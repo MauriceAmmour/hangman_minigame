@@ -5,10 +5,6 @@
 
 #include "game.hpp"
 
-// for (const std::string& pic : hangman) {
-//     std::cout << pic << std::endl;
-// }
-
 std::string gameWords[] = {
     "Apfel", "Buch", "Computer", "Drache", "Erdbeere",
     "Fahrrad", "Garten", "Haus", "Igel", "Jacke",
@@ -159,10 +155,6 @@ void gameLoop()
                 
                 wrongLetter = false;
             }
-            // else if (guessedLetter.length() > 1 && wordInUppercase(targetWord) != wordInUppercase(guessedLetter))
-            // {
-            //     wrongLetter = true;
-            // }
         }
 
         if (wrongLetter == true)
