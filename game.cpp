@@ -81,3 +81,19 @@ std::string underlinesForChoosenWord(std::string word)
 
     return underlines;
 }
+
+void gameLoop()
+{
+    bool won = false;
+
+    while (true)
+    {
+        if (won == true)
+        {
+            std::cout << "you find the word" << std::endl;
+            break;
+        }
+        
+    }
+    
+}
