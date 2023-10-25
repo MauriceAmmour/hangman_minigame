@@ -122,16 +122,19 @@ void gameLoop()
     bool won = false;
     std::string targetWord = findRandomWord(gameWords);
     std::string underLines = underlinesForChoosenWord(targetWord);
+    std::string guessedLetter;
+    uint32_t count = 0U;
 
-    char guessedLetter;
 
     std::cout << targetWord << std::endl;
 
     while (true)
     {
+        bool wrongLetter = true;
+
         if (won == true)
         {
-            std::cout << "you find the word" << std::endl;
+            std::cout << "you find the word ( " << targetWord << " )" << std::endl << std::endl;
             break;
         }
 
@@ -139,26 +142,45 @@ void gameLoop()
 
         std::cout << "guess a letter: ";
         std::cin >> guessedLetter;
+        
 
         std::cout << std::endl;
 
-        std::cout << "guessed Letter is: " << guessedLetter << std::endl;
-
         for (uint32_t i = 0; i < targetWord.length(); ++i)
         {
-            if (std::toupper(targetWord[i]) == std::toupper(guessedLetter))
+            if (wordInUppercase(targetWord) == wordInUppercase(guessedLetter))
             {
-                underLines[i] = static_cast<char>(std::toupper(guessedLetter));
+                won = true;
+                wrongLetter = false;
             }
+            else if (std::toupper(targetWord[i]) == std::toupper(guessedLetter[0]) && guessedLetter.length() == 1)
+            {
+                underLines[i] = static_cast<char>(std::toupper(guessedLetter[0]));
+                
+                wrongLetter = false;
+            }
+            // else if (guessedLetter.length() > 1 && wordInUppercase(targetWord) != wordInUppercase(guessedLetter))
+            // {
+            //     wrongLetter = true;
+            // }
+        }
+
+        if (wrongLetter == true)
+        {
+            std::cout << hangman[count] << std::endl;
+            if (count == 6)
+            {
+                std::cout << "you lost" << std::endl;
+                break;
+            }
+            count++;
             
         }
+        
 
         if (wordInUppercase(underLines) == wordInUppercase(targetWord))
         {
             won = true;
         }
-        
-        
-        
     }
 }
