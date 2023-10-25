@@ -121,7 +121,9 @@ void gameLoop()
     std::string underLines = underlinesForChoosenWord(targetWord);
     std::string guessedLetter;
     uint32_t count = 0U;
+    std::string usedLetters;
 
+    std::cout << targetWord << std::endl;
 
     while (true)
     {
@@ -129,7 +131,8 @@ void gameLoop()
 
         if (won == true)
         {
-            std::cout << "you find the word ( " << targetWord << " )" << std::endl << std::endl;
+            std::cout << "you find the word ( " << targetWord << " )" << std::endl
+                      << std::endl;
             break;
         }
 
@@ -137,7 +140,6 @@ void gameLoop()
 
         std::cout << "guess a letter: ";
         std::cin >> guessedLetter;
-        
 
         std::cout << std::endl;
 
@@ -151,27 +153,54 @@ void gameLoop()
             else if (std::toupper(targetWord[i]) == std::toupper(guessedLetter[0]) && guessedLetter.length() == 1)
             {
                 underLines[i] = static_cast<char>(std::toupper(guessedLetter[0]));
-                
+
                 wrongLetter = false;
             }
+            else
+            {
+                if (guessedLetter.length() == 1)
+                {
+
+                    int upper = std::toupper(static_cast<unsigned char>(guessedLetter[0]));
+                    guessedLetter = static_cast<char>(upper);
+
+                    // seeks in usedLetters after the guessed letter
+                    size_t found = usedLetters.find(guessedLetter[0]);
+
+                    if (found == std::string::npos)
+                    {
+                        // if the guessed letter is not in usedLetters it will be add to usedLetters
+                        usedLetters += guessedLetter;
+                    }
+                }
+            }
         }
+
+        std::cout << "used Letters: " << usedLetters << std::endl;
 
         if (wrongLetter == true)
         {
             std::cout << hangman[count] << std::endl;
             if (count == 6)
             {
-                std::cout << "you lost" << std::endl;
+                std::cout << "you lost, the word was ( " << targetWord << " )" << std::endl << std::endl;
                 break;
             }
             count++;
-            
         }
-        
 
         if (wordInUppercase(underLines) == wordInUppercase(targetWord))
         {
             won = true;
+        }
+
+        if (usedLetters.length() > 0)
+        {
+            for (uint32_t i = 0; i < usedLetters.length(); ++i)
+            {
+                std::cout << usedLetters[i] << ", ";
+            }
+            std::cout << std::endl;
         }
     }
 }
