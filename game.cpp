@@ -70,13 +70,14 @@ std::vector<std::string> hangman = {
 
 std::string words[] = {"Hallo", "Welt"};
 
-std::string underLinesForChoosenWord(std::string word)
+std::string underlinesForChoosenWord(std::string word)
 {
     std::string underlines;
     for (uint32_t i = 0; i < word.length(); ++i)
     {
         underlines.append("_");
     }
+    std::cout << std::endl;
 
     return underlines;
 }
