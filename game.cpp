@@ -123,7 +123,6 @@ void gameLoop()
     uint32_t count = 0U;
     std::string usedLetters;
 
-    std::cout << targetWord << std::endl;
 
     while (true)
     {
@@ -192,15 +191,6 @@ void gameLoop()
         if (wordInUppercase(underLines) == wordInUppercase(targetWord))
         {
             won = true;
-        }
-
-        if (usedLetters.length() > 0)
-        {
-            for (uint32_t i = 0; i < usedLetters.length(); ++i)
-            {
-                std::cout << usedLetters[i] << ", ";
-            }
-            std::cout << std::endl;
         }
     }
 }
